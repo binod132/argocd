@@ -11,3 +11,15 @@ jobs:
     - uses: hashicorp/setup-terraform@v2
     - name: Start minikube
       uses: medyagh/setup-minikube@master
+    - name: create namespace for argocd
+      run: |
+        kubectl create ns argocd
+    - name: install argocd
+      run: |
+        kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    - name: verify ArgoCD installation
+      run: |
+        kubectl get all -n argocd
+    - name: access ArgoCD
+      run: |
+        kubectl port-forward svc/argocd-server -n argocd 8080:443
