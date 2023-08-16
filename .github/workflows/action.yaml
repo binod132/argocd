@@ -24,6 +24,6 @@ jobs:
       with: 
         max_attempts: 3
         retry_on: error
-        timeout-minute: 5
+        timeout_minute: 5
         command: |
           kubectl port-forward svc/argocd-server -n argocd 8080:443
