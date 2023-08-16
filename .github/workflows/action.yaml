@@ -20,6 +20,7 @@ jobs:
       run: |
         kubectl get all -n argocd
     - name: access ArgoCD
+      uses: nick-fields/retry@v2
       with: 
         max_attempts: 3
         retry_on: error
